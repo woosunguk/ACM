@@ -18,10 +18,10 @@ int main() {
 	long m;
 
 	while (scanf("%ld %ld", &n, &m) != EOF) {
-		if(n > m)
+		if (n > m)
 			cout << m << " divides " << n << "!" << endl;
-		else{
-			if(primefactors(m))
+		else {
+			if (primefactors(m))
 				cout << m << " divides " << n << "!" << endl;
 			else
 				cout << m << " does not divide " << n << "!" << endl;
@@ -62,10 +62,14 @@ int abcd(int prime) {
 	}
 	return 1;
 }
-int primefactors(long m){
+int primefactors(long m) {
 	int sqrtn = sqrt(m);
-
-	for (int div = 2; div <= sqrtn; ++div)
+	while (m % 2 == 0) {
+		m /= 2;
+		if (abcd(2))
+			return 0;
+	}
+	for (int div = 3; div <= sqrtn; div += 2)
 		while (m % div == 0) {
 			m /= div;
 			if (abcd(div))
